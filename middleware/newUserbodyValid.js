@@ -1,10 +1,10 @@
 const usernameValid = (req, res, next) => {
     const { username } = req.body;
     if(!username) {
-        return res.json({errMessage1: 'Username is required and must be at least 4 characters long.'});
+        return res.json({errMessage1: 'Username is required and must be 4-15 characters long.'});
     }
-    if (username.length < 4) {
-        return res.json({errMessage1: 'Username must be at least 4 characters long.'});
+    if (username.length < 4 || username.length > 15) {
+        return res.json({errMessage1: 'Username must be 4-15 characters long.'});
     }
     next();
 };
@@ -12,10 +12,10 @@ const usernameValid = (req, res, next) => {
 const passwordValid = (req, res, next) => {
     const { password } = req.body;
     if(!password) {
-        return res.json({errMessage3: 'Password is required and must be at least 6 characters long.'});
+        return res.json({errMessage3: 'Password is required and must be at least 7 characters long.'});
     }
     if (password.length < 6) {
-        return res.json({errMessage3: 'Password must be at least 6 characters long.'});
+        return res.json({errMessage3: 'Password must be at least 7 characters long.'});
     }
     next();
 };
