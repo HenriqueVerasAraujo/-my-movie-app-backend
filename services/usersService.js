@@ -27,7 +27,7 @@ const login = async(body) => {
     }
     const findEmail = await User.findOne({ where: { email } });
     if (!findEmail) {
-        return { errMessage2: 'Email not found.' };
+        return { errMessage2: 'Email not found. Try a different email.' };
     }
     const comparePass = await bcrypt.compare(password, findEmail.password);
     if (!comparePass) {

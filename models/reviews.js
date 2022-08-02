@@ -28,7 +28,7 @@ const Review = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
     score: {
-      allowNull,
+      allowNull:false,
       type:DataTypes.INTEGER,
     },
     createdAt: {
