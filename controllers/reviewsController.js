@@ -11,8 +11,21 @@ const createReview = async(req, res) => {
         console.log(err);
         return res.status(500).json({error: err});
     }
+};
+
+const getFromOne= async(req, res) => {
+    const { id } = req.params;
+    try {  
+        const allReviews = await ReviewService.getFromOne(id);
+        return res.json(allReviews);
+
+    }catch (err) {
+        console.log(err);
+        return res.status(500).json({error: err});
+    }
 }
 
 module.exports = {
     createReview,
+    getFromOne,
 }
