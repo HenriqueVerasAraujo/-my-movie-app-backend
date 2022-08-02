@@ -1,4 +1,4 @@
-const { Review } = require('../models');
+const { Review, User } = require('../models');
 require('dotenv').config();
 
 const createReview = async(body, movieId, userId) => {
@@ -8,7 +8,11 @@ const createReview = async(body, movieId, userId) => {
 };
 
 const getFromOne = async(movieId) => {
-    const allReviews = await Review.findAll({ where: { movieId } });
+    const allReviews = await Review.findAll({ where: { movieId },
+        attributes: { exclude: '[id, updatedAt]'}, 
+        include: [
+            {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password', ]}}
+    ] });
     return allReviews;
 };
 
