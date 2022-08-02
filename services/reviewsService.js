@@ -8,14 +8,14 @@ const createReview = async(body, movieId, userId) => {
 };
 
 const getFromOne = async(movieId) => {
-    const allReviews = await Review.findAll({ where: { movieId },
-        attributes: { exclude: '[id, updatedAt]'}, 
+    const allReviews = await Review.findAll({ 
+        where: { movieId },
+        attributes: { exclude: '[updatedAt]'}, 
         include: [
-            {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password', ]}}
+            {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}}
     ] });
     return allReviews;
 };
-
 
 module.exports = {
     createReview,

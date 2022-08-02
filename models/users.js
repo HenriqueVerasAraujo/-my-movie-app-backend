@@ -23,7 +23,7 @@ const User = (sequelize, DataTypes) => {
     timestamps: false,
   });
   User.associate = ({ Review }) => {
-    User.hasMany(Review, {foreignKey: 'userId', as: 'reviews' })
+    User.hasMany(Review, { foreignKey: 'userId', as: 'reviews' })
   }
   return User;
 };
