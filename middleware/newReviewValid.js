@@ -4,10 +4,10 @@ const titleValid = (req, res, next) => {
     const { title } = req.body;
     try {
         if(!title) {
-            return res.json({errMessage1: 'Title is required and must be 3-40 characters long.'});
+            return res.json({errMessage1: 'Title is required and must be 3-60 characters long.'});
         }
-        if (title.length < 3 || title.length > 40) {
-            return res.json({errMessage1: 'Title must be 4-15 characters long.'});
+        if (title.length < 3 || title.length > 60) {
+            return res.json({errMessage1: 'Title must be 4-60 characters long.'});
         }
         return next();
     } catch (err) {
@@ -36,7 +36,7 @@ const scoreValid = (req, res, next) => {
     const { score } = req.body;
     try {
         if (score === 'N/A' || score < 0 || score > 10) {
-            return res.json({errMessage3: 'You need to rate the movie from 0 to 10'});
+            return res.json({errMessage3: 'You need to rate the movie from 0 to 10.'});
         };
         return next();
     } catch (err) {
