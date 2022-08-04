@@ -13,5 +13,6 @@ router.post('/create/:id',
 );
 router.get('/:id', ReviewController.getFromOne);
 router.get('/getone/:id', ReviewController.getOneReview);
+router.delete('/:id', ReviewController.deleteReview);
 
 module.exports = router;

@@ -35,8 +35,13 @@ const getOneReview = async(id) => {
     return myReview;
 }
 
+const deleteReview = async(id) => {
+    const deleteOne = await Review.destroy({where: { id }});
+}
+
 module.exports = {
     createReview,
     getFromOne,
     getOneReview,
+    deleteReview,
 };

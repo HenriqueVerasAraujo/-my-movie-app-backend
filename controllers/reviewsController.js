@@ -37,8 +37,21 @@ const getOneReview = async (req, res) => {
     }
 };
 
+const deleteReview = async(req, res) => {
+    const { id } = req.params;
+    try {  
+        const myReview = await ReviewService.deleteReview(id);
+        return res.json('Review deleted');
+
+    }catch (err) {
+        console.log(err);
+        return res.status(500).json({error: err});
+    }
+}
+
 module.exports = {
     createReview,
     getFromOne,
     getOneReview,
+    deleteReview,
 }
