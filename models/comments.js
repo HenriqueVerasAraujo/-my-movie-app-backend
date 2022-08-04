@@ -22,7 +22,7 @@ const Comment = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       references: {
         model: 'reviews',
-        key: id
+        key: 'id'
       },
       onDelete: 'CASCADE',
 
@@ -51,7 +51,7 @@ const Comment = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       otherKey: 'reviewId',
       through: Comment,
-      as: 'reviews',
+      as: 'reviews-Comments',
     });
     Review.belongsToMany(User, {
       foreignKey: 'reviewId',
