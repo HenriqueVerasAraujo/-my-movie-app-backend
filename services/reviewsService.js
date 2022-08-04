@@ -1,4 +1,4 @@
-const { Review, User } = require('../models');
+const { Review, User, Comment } = require('../models');
 require('dotenv').config();
 
 const createReview = async(body, movieId, userId) => {
@@ -10,14 +10,32 @@ const createReview = async(body, movieId, userId) => {
 const getFromOne = async(movieId) => {
     const allReviews = await Review.findAll({ 
         where: { movieId },
-        attributes: { exclude: '[updatedAt]'}, 
+        attributes: { exclude: '[updatedAt]'},
+        order: [['id', 'DESC']],
         include: [
-            {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}}
+            {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}},
+            {model: Comment, as: 'comments',
+             attributes: { exclude: ['updatedAt', 'reviewId'] },
+             order: [['id', 'DESC']]},
     ] });
     return allReviews;
 };
 
+const getOneReview = async(id) => {
+    const myReview = await Review.findOne({
+        where: { id },
+        attributes: { exclude: '[updatedAt]'},
+        include: [
+            {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}},
+            {model: Comment, as: 'comments',
+             attributes: { exclude: ['updatedAt', 'reviewId'] },
+             order: [['id', 'DESC']]},
+        ] });
+    return myReview;
+}
+
 module.exports = {
     createReview,
     getFromOne,
+    getOneReview,
 };

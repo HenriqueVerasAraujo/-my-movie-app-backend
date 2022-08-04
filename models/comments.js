@@ -47,18 +47,20 @@ const Comment = (sequelize, DataTypes) => {
   });
 
   Comment.associate = ({Review, User}) => {
-    User.belongsToMany(Review, {
-      foreignKey: 'userId',
-      otherKey: 'reviewId',
-      through: Comment,
-      as: 'reviews-Comments',
-    });
-    Review.belongsToMany(User, {
-      foreignKey: 'reviewId',
-      otherKey: 'userId',
-      through: Comment,
-      as: 'users',
-    })
+    Comment.belongsTo(Review, { foreignKey: 'reviewId', as: 'comments' })
+
+    // User.belongsToMany(Review, {
+    //   foreignKey: 'userId',
+    //   otherKey: 'reviewId',
+    //   through: Comment,
+    //   as: 'reviews-Comments',
+    // });
+    // Review.belongsToMany(User, {
+    //   foreignKey: 'reviewId',
+    //   otherKey: 'userId',
+    //   through: Comment,
+    //   as: 'users',
+    // })
   }
   return Comment;
 };
