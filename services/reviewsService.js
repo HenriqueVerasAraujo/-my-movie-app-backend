@@ -28,6 +28,7 @@ const getOneReview = async(id) => {
         include: [
             {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}},
             {model: Comment, as: 'comments',
+             include: [{model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}}],
              attributes: { exclude: ['updatedAt', 'reviewId'] },
              order: [['id', 'DESC']]},
         ] });

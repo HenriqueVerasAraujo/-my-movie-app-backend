@@ -12,6 +12,6 @@ router.post('/create/:id',
     ReviewController.createReview
 );
 router.get('/:id', ReviewController.getFromOne);
-router.get('/getOne/:id', ReviewController.getOneReview);
+router.get('/getone/:id', ReviewController.getOneReview);
 
 module.exports = router;

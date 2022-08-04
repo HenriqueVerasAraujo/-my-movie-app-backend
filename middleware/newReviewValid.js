@@ -20,10 +20,10 @@ const reviewBodyValid = (req, res, next) => {
     const { reviewBody } = req.body;
     try {
         if(!reviewBody) {
-            return res.json({errMessage2: 'The review is required and must be 3-1000 characters long.'});
+            return res.json({errMessage2: 'The review is required and must be 3-3000 characters long.'});
         }
-        if (reviewBody.length < 3 || reviewBody.length > 1000) {
-            return res.json({errMessage2: 'The review must be 3-1000 characters long.'});
+        if (reviewBody.length < 3 || reviewBody.length > 3000) {
+            return res.json({errMessage2: 'The review must be 3-3000 characters long.'});
         }
         return next();
     } catch (err) {
