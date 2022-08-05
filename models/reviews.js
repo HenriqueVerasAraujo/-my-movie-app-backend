@@ -43,9 +43,10 @@ const Review = (sequelize, DataTypes) => {
     tableName: 'reviews',
     timestamps: true,
   });
-  Review.associate = ({ User, Comment }) => {
-    Review.belongsTo(User, { foreignKey: 'userId', as: 'user' })
-    Review.hasMany(Comment, { foreignKey: 'reviewId', as: 'comments' })
+  Review.associate = ({ User, Comment, Like }) => {
+    Review.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+    Review.hasMany(Comment, { foreignKey: 'reviewId', as: 'comments' });
+    Review.hasMany(Like, { foreignKey: 'reviewId', as: 'likes' });
   }
   return Review;
 };
