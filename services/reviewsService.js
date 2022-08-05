@@ -1,4 +1,4 @@
-const { Review, User, Comment } = require('../models');
+const { Review, User, Comment, Like } = require('../models');
 require('dotenv').config();
 
 const createReview = async(body, movieId, userId) => {
@@ -13,6 +13,7 @@ const getFromOne = async(movieId) => {
         attributes: { exclude: '[updatedAt]'},
         order: [['id', 'DESC']],
         include: [
+            {model: Like, as: 'likes', attributes: { exclude: []}},
             {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}},
             {model: Comment, as: 'comments',
              attributes: { exclude: ['updatedAt', 'reviewId'] },
@@ -26,6 +27,7 @@ const getOneReview = async(id) => {
         where: { id },
         attributes: { exclude: '[updatedAt]'},
         include: [
+            {model: Like, as: 'likes', attributes: { exclude: []}},
             {model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}},
             {model: Comment, as: 'comments',
              include: [{model: User, as: 'user', attributes: { exclude: ['id', 'email', 'password']}}],
@@ -37,6 +39,7 @@ const getOneReview = async(id) => {
 
 const deleteReview = async(id) => {
     const deleteOne = await Review.destroy({where: { id }});
+    return deleteOne;
 }
 
 module.exports = {
