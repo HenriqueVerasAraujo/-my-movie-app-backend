@@ -45,7 +45,7 @@ const Like = (sequelize, DataTypes) => {
     //   foreignKey: 'reviewId',
     //   otherKey: 'userId',
     //   through: Comment,
-    //   as: 'users',
+    //   as: 'users',.
     // })
   }
   return Like;
