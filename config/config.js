@@ -1,4 +1,5 @@
 require('dotenv').config();
+import * as pg from 'pg';
 
 module.exports = {
   development: {
@@ -6,13 +7,7 @@ module.exports = {
     password: process.env.MYSQL_PASSWORD,
     database: process.env.DB,
     host: process.env.HOSTNAME,
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    dialect: 'mysql',
   },
   test: {
     username: process.env.MYSQL_USER,
@@ -20,6 +15,7 @@ module.exports = {
     database: process.env.DB,
     host: process.env.HOSTNAME,
     dialect: 'postgres',
+    dialectModule: pg,
     dialectOptions: {
       ssl: {
         require: true,
